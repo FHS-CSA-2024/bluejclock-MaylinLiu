@@ -1,24 +1,52 @@
+public class NumberDisplay {
+    // Private variables for limit and value
+    private int limit;
+    private int value;
 
+    // Constructor that sets the limit and initializes value to 0
+    public NumberDisplay(int rollOverLimit) {
+        limit = rollOverLimit;
+        value = 0;
+    }
 
-public class NumberDisplay
-{
-    //implement 2 private variables, limit and value.
-    //  both should be ints
+    // Getter for limit
+    public int getLimit() {
+        return limit;
+    }
 
-    
-    //implement a constructor that sets the limit to a passed in variable rollOverLimit
-    //  should set value to 0
-    
-    //Implement getter/setter methods for limit and value
-    //  The setValue method should check the input for validity
-    //      (should not be less than 0, or over the limit)
+    // Setter for limit
+    public void setLimit(int newLimit) {
+        limit = newLimit;
+    }
 
-    //Implement a function getDisplayValue that take no parameters and returns a String.
-    //  The return string should be formatted as a two digit number
-    //  If the number is less than 10 it should return a 0 before the number.
+    // Getter for value
+    public int getValue() {
+        return value;
+    }
 
+    // Setter for value with validity check
+    public void setValue(int newValue) {
+        if (newValue >= 0 && newValue < limit) {
+            value = newValue;
+        } else {
+            System.out.println("Invalid value: " + newValue);
+        }
+    }
 
-    //Implement a method increment that takes no parameters and returns nothing. 
-    //  This function should increase value by 1, unless it reaches the limit.
-    //  It should reset to 0 if the limit is reached
+    // Method to return the display value as a two-digit string
+    public String getDisplayValue() {
+        if (value < 10) {
+            return "0" + value;  // Add a leading zero if value is less than 10
+        } else {
+            return "" + value;  // Otherwise return the value as a string
+        }
+    }
+
+    // Method to increment the value, rolling over if the limit is reached
+    public void increment() {
+        value++;
+        if (value == limit) {
+            value = 0;  // Reset to 0 if limit is reached
+        }
+    }
 }
